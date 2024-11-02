@@ -40,7 +40,7 @@ def move_emails(mailbox, rule, max_emails_per_rule):
         criteria["subject"] = str(rule["subject_contains"])
 
     print(
-        f"\nApplying rule: Moving emails from '{input_folder}' "
+        f"\nMoving emails from '{input_folder}' "
         f"to '{rule['output_folder']}' with criteria:"
     )
     print(
@@ -75,7 +75,7 @@ def move_emails(mailbox, rule, max_emails_per_rule):
         )  # Move all emails in a single batch
 
     print(
-        f"Completed rule: Moved {len(uids_to_move)} emails from '{input_folder}' to '{rule['output_folder']}'"
+        f"Moved {len(uids_to_move)} emails from '{input_folder}' to '{rule['output_folder']}'"
     )
     return len(uids_to_move)
 
