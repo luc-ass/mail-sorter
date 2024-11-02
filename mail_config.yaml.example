@@ -1,0 +1,5 @@
+server: "imap.yourmailprovider.com" # Replace with your mail server
+username: "your_email@example.com"
+password: "your_password"
+use_ssl: true # Set to true for SSL
+port: 993 # IMAP SSL port, default 993 for SSL

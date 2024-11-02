@@ -1,0 +1,32 @@
+# Ignore the virtual environment directory
+.venv/
+
+# Ignore VSCode settings
+.vscode/
+
+# Byte-compiled / compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# macOS system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+
+# Python packaging files
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Exclude configuration files
+mail_*.yaml
+mail_*.yml

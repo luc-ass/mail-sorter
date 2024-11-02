@@ -1,0 +1,12 @@
+rules:
+  - input_folder: "INBOX"
+    output_folder: "Payment/Paypal"
+    sender_contains: "@paypal.com"
+    subject_contains: "Payment"
+    min_mail_age: "14d"
+    read_status: "seen"
+  - input_folder: "INBOX"
+    output_folder: "Promotions"
+    sender_contains: "@newsletter.com"
+    min_mail_age: "30d"
+    read_status: "unseen"
