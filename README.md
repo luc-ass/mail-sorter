@@ -31,6 +31,9 @@ servers:
 Your `mail_sorting_rules.yaml` contains the actual sorting rules. These can be configured to run on only one or multiple of your accounts:
 
 ```yaml
+defaults:
+  max_emails_per_rule: 10 # Maximum number of emails to move per rule
+
 rules:
   - servers:
       - "Google Mail"
