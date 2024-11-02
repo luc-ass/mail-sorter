@@ -1,7 +1,5 @@
 """ mail-sorter: a script keeping your mailbox tidy """
 
-
-import time
 import datetime
 import yaml
 from imap_tools import MailBox, AND
@@ -97,4 +95,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
