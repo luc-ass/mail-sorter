@@ -1,5 +1,10 @@
-server: "imap.yourmailprovider.com" # Replace with your mail server
-username: "your_email@example.com"
-password: "your_password"
-use_ssl: true # Set to true for SSL
-port: 993 # IMAP SSL port, default 993 for SSL
+servers:
+  - name: "Google Mail"
+    server: "imap.gmail.com"
+    username: "your_google_email@example.com"
+    password: "your_google_password"
+  
+  - name: "Second Server"
+    server: "imap.secondserver.com"
+    username: "your_second_email@example.com"
+    password: "your_second_password"

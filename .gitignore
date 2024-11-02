@@ -30,3 +30,4 @@ build/
 # Exclude configuration files
 mail_*.yaml
 mail_*.yml
+test.py

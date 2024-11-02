@@ -1,11 +1,20 @@
+defaults:
+  max_emails_per_rule: 10 # Maximum number of emails to move per rule
+
 rules:
-  - input_folder: "INBOX"
-    output_folder: "Payment/Paypal"
+  - servers:
+      - "Google Mail"
+      - "Second Server"
+    input_folder: "INBOX"
+    output_folder: "Belege/Paypal"
     sender_contains: "@paypal.com"
-    subject_contains: "Payment"
+    subject_contains: "Zahlung"
     min_mail_age: "14d"
     read_status: "seen"
-  - input_folder: "INBOX"
+  
+  - servers:
+      - "Second Server"
+    input_folder: "INBOX"
     output_folder: "Promotions"
     sender_contains: "@newsletter.com"
     min_mail_age: "30d"
