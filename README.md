@@ -1,9 +1,9 @@
 # mail-sorter
 **mail-sorter** is a script for keeping your mailbox tidy. You provide it whit a `mail_config.yaml` and a `mail_sorting_rules.yaml` and it will sort your mail based on the following criteria:
 
-| criterion (defaults) | example | default | optional |
-| :------------------- | :------ | :------ | :------- |
-| max_emails_per_rule  | 50      | 10      | yes      |
+| criterion (defaults)  | example | default | optional |
+| :-------------------- | :------ | :------ | :------- |
+| `max_emails_per_rule` | `50`    | `10`    | yes      |
 
 | criterion (rules)  | example                | default | optional |
 | :----------------- | :--------------------- | :------ | :------- |
