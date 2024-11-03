@@ -1,7 +1,11 @@
 # mail-sorter
 **mail-sorter** is a script for keeping your mailbox tidy. You provide it whit a `mail_config.yaml` and a `mail_sorting_rules.yaml` and it will sort your mail based on the following criteria:
 
-| criterion          | example                | default | optional |
+| criterion (defaults) | example | default | optional |
+| :------------------- | :------ | :------ | :------- |
+| max_emails_per_rule  | 50      | 10      | yes      |
+
+| criterion (rules)  | example                | default | optional |
 | :----------------- | :--------------------- | :------ | :------- |
 | `input_folder`     | `Office/Important`     | `INBOX` | yes      |
 | `output_folder`    | `Office/Important/Old` |         | no       |
@@ -12,7 +16,7 @@
 
 ## Configuration files
 ### mail_config
-Your `mail_config.yaml` contains the information about your email servers and login credentials. Be sure to keep these secure. Your configuration could look like this:
+Your `mail_config.yaml` contains the information about your email servers and login credentials. Be sure to keep these secure. I've kept them in a seperate file, so you can share and backup your rules more easily, as the rules file can become quite big. Your configuration could look like this:
 
 ```yaml
 servers:
@@ -53,7 +57,7 @@ rules:
     min_mail_age: "30d"
     read_status: "unseen"
 ```
-You should be careful to use multiple servers, as these rules are identical. Differing folder structure can make this script fail.
+Be careful to use multiple servers in one rule, as these rules and underlying folders need to be identical. Differing folder structure can make this script fail.
 
 ### Install & run
 ```sh
