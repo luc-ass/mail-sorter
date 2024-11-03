@@ -59,9 +59,12 @@ def move_emails(mailbox, rule, max_emails_per_rule):
         print(f"Error fetching emails: {e}")
         return 0
 
-    emails_sorted = sorted(emails, key=lambda msg: msg.date)[
-        :max_emails_per_rule
-    ]  # Oldest to newest
+    try:
+        # Oldest to newest
+        emails_sorted = sorted(emails, key=lambda msg: msg.date)[:max_emails_per_rule]
+    except:
+        print(f"Could not sort E-Mails. Mails will be processed as is.")
+        emails_sorted = emails  # Oldest to newest
     print(
         f"Found {len(emails_sorted)} matching emails in '{input_folder}', limited to {max_emails_per_rule}"
     )
