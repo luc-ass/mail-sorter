@@ -16,7 +16,7 @@ def parse_duration(duration_str):
     """Converts duration string (e.g., '14d') into a timedelta object."""
     if duration_str.endswith("d"):
         return datetime.timedelta(days=int(duration_str[:-1]))
-    return datetime.timedelta(days=7)  # default 7 days
+    return datetime.timedelta(days=31)  # default 31 days
 
 
 def move_emails(mailbox, rule, max_emails_per_rule):
