@@ -54,3 +54,15 @@ rules:
     read_status: "unseen"
 ```
 You should be careful to use multiple servers, as these rules are identical. Differing folder structure can make this script fail.
+
+### Install & run
+```sh
+# create virtual environment if not exits
+python3 -m venv .venv
+# activate envirnoment
+source .venv/bin/activate
+# install requirements
+pip install -r requirements.txt
+# run mail-sorter
+python3 main.py
+```
