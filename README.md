@@ -1,5 +1,5 @@
 # mail-sorter
-**mail-sorter** is a script for keeping your mailbox tidy. You provide it whit a `mail_config.yaml` and a `mail_sorting_rules.yaml` and it will sort your mail based on the following criteria:
+**mail-sorter** is a script for keeping your mailbox tidy. I wrote it because I could not find a mail application, that could sort mails based on _age_ and _seen_ status. You provide **mail-sorter** with a `mail_config.yaml` and a `mail_sorting_rules.yaml` and it will sort your mail based on the following criteria:
 
 | criterion (defaults)  | example | default | optional |
 | :-------------------- | :------ | :------ | :------- |
