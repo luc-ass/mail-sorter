@@ -71,3 +71,9 @@ pip install -r requirements.txt
 # run mail-sorter
 python3 main.py
 ```
+
+### Todo
+- [ ] Add logging to file to better monitor mail movements
+- [ ] Dockerize the script for easier deployment
+- [ ] Add dry-run feature for rule building
+- [ ] Fix problems with umlauts (i.e. ä, ü, ö, ß, etc.)
