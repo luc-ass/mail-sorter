@@ -73,7 +73,9 @@ python3 main.py
 ```
 
 ### logging
-By default the script only logs high level messages to the console and `mail-sorter.log`. You can choose to make it verbose by setting `--log=INFO` or `--log=DEBUG`.
+By default the script only logs high level messages to the console and `mail-sorter.log`. You can choose to make it verbose by setting `--log=INFO` or `--log=DEBUG`. 
+
+:warning: A word of caution: Log files can grow really fast and the logfile is not deleted automatically! Do not run this script at high log levels for extended periods fo time!
 
 ### Todo
 - [x] Add logging to file to better monitor mail movements
