@@ -61,18 +61,8 @@ def move_emails(mailbox, rule, max_emails_per_rule):
         print(f"Error fetching emails: {e}")
         return 0
 
-    try:
-        # Oldest to newest
-        emails_sorted = sorted(emails, key=lambda msg: msg.date)[:max_emails_per_rule]
-    except:
-        print("Could not sort E-Mails. Mails will be processed as is.")
-        emails_sorted = emails  # Oldest to newest
-    print(
-        f"Found {len(emails_sorted)} matching emails in '{input_folder}', limited to {max_emails_per_rule}"
-    )
-
     # Collect UIDs for batch move
-    uids_to_move = [msg.uid for msg in emails_sorted]
+    uids_to_move = [msg.uid for msg in emails]
     if uids_to_move:
         print(f"Batch moving {len(uids_to_move)} emails to '{rule['output_folder']}'")
         mailbox.move(
