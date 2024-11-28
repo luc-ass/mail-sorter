@@ -24,7 +24,10 @@ def configure_logging(args):
     logging.basicConfig(
         level=log_level,
         format='%(levelname)s: %(message)s',
-        filename='mail-sorter.log'
+        handlers=[
+            logging.FileHandler('mail-sorter.log'),
+            logging.StreamHandler()
+        ]
         )
 
 # Load YAML configurations for mail servers and sorting rules
