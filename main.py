@@ -59,7 +59,7 @@ def move_emails(mailbox, rule, max_emails_per_rule):
     # Fetch emails with combined criteria, limited to max_emails_per_rule
     try:
         emails = list(mailbox.fetch(AND(**criteria), limit=max_emails_per_rule))
-    except Exception as e:
+    except Exception as e:  # pylint: disable=broad-exception-caught
         print(f"Error fetching emails: {e}")
         return 0
 
