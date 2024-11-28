@@ -72,8 +72,11 @@ pip install -r requirements.txt
 python3 main.py
 ```
 
+### logging
+By default the script only logs high level messages to the console and `mail-sorter.log`. You can choose to make it verbose by setting `--log=INFO` or `--log=DEBUG`.
+
 ### Todo
-- [ ] Add logging to file to better monitor mail movements
+- [x] Add logging to file to better monitor mail movements
 - [ ] Dockerize the script for easier deployment
 - [ ] Add dry-run feature 
 - [ ] Add rule building option
