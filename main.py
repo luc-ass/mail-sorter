@@ -1,12 +1,36 @@
 """ mail-sorter: a script keeping your mailbox tidy """
 
 import datetime
+import logging
+import argparse
 import yaml
 from imap_tools import MailBox, AND
+
+
+def parse_args():
+    '''Parse command line arguments'''
+    parser = argparse.ArgumentParser(description="Control logging levels from the command line")
+    parser.add_argument(
+        '--log', '-l',
+        default='WARNING',
+        help='Set the logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)'
+        )
+    return parser.parse_args()
+
+
+def configure_logging(args):
+    '''Configure logging with arguments'''
+    log_level = getattr(logging, args.log.upper(), logging.WARNING)  # Set logging level based on --log argument
+    logging.basicConfig(
+        level=log_level,
+        format='%(levelname)s: %(message)s',
+        filename='mail-sorter.log'
+        )
 
 # Load YAML configurations for mail servers and sorting rules
 with open("mail_sorting_rules.yaml", "r", encoding="utf-8") as config_file:
     sorting_config = yaml.safe_load(config_file)
+
 
 with open("mail_config.yaml", "r", encoding="utf-8") as credentials_file:
     mail_config = yaml.safe_load(credentials_file)
@@ -14,6 +38,7 @@ with open("mail_config.yaml", "r", encoding="utf-8") as credentials_file:
 
 def parse_duration(duration_str):
     """Converts duration string (e.g., '14d') into a timedelta object."""
+    logging.debug('Duration string: %s', duration_str)
     if duration_str.endswith("d"):
         return datetime.timedelta(days=int(duration_str[:-1]))
     if duration_str.endswith("w"):
@@ -43,41 +68,50 @@ def move_emails(mailbox, rule, max_emails_per_rule):
     if "subject_contains" in rule:
         criteria["subject"] = str(rule["subject_contains"])
 
-    print(
-        f"\nMoving emails from '{input_folder}' "
-        f"to '{rule['output_folder']}' with criteria:"
+    logging.debug(
+        "Moving emails from %s to %s with criteria:", 
+        input_folder, rule['output_folder']
     )
-    print(
-        f"  - Read status: {'seen' if rule.get('read_status') == 'seen' else 'unseen'}"
+    logging.debug(
+        "> Read status: %s", 'seen' if rule.get('read_status') == 'seen' else 'unseen'
     )
-    print(f"  - Date before: {date_cutoff}")
+    logging.debug("> Date before: %s", date_cutoff)
     if "sender_contains" in rule:
-        print(f"  - Sender contains: {rule['sender_contains']}")
+        logging.debug("> Sender contains: %s", rule['sender_contains'])
     if "subject_contains" in rule:
-        print(f"  - Subject contains: {rule['subject_contains']}")
+        logging.debug("> Subject contains: %s", rule['subject_contains'])
 
     # Fetch emails with combined criteria, limited to max_emails_per_rule
     try:
         emails = list(mailbox.fetch(AND(**criteria), limit=max_emails_per_rule))
     except Exception as e:  # pylint: disable=broad-exception-caught
-        print(f"Error fetching emails: {e}")
+        logging.error("Error fetching emails: %s", e)
         return 0
 
     # Collect UIDs for batch move
     uids_to_move = [msg.uid for msg in emails]
     if uids_to_move:
-        print(f"Batch moving {len(uids_to_move)} emails to '{rule['output_folder']}'")
+        logging.debug(
+            "Batch moving %s emails to %s",
+            len(uids_to_move), rule['output_folder']
+        )
         mailbox.move(
             uids_to_move, rule["output_folder"]
         )  # Move all emails in a single batch
 
-    print(
-        f"Moved {len(uids_to_move)} emails from '{input_folder}' to '{rule['output_folder']}'"
+    logging.info(
+        "Moved %s emails from '%s' to '%s'",
+        len(uids_to_move), input_folder, rule['output_folder']
     )
     return len(uids_to_move)
 
 
 def main():
+    '''Main function'''
+    # Configure logging based on arguments
+    args = parse_args()
+    configure_logging(args)
+
     # Extract global defaults from the configuration
     global_max_emails_per_rule = sorting_config.get("defaults", {}).get(
         "max_emails_per_rule", 10
@@ -90,7 +124,11 @@ def main():
         username = server_config["username"]
         password = server_config["password"]
 
-        print(f"\nConnecting to {server_name} ({server}) with username {username}...")
+        logging.info(
+            "Connecting to %s (%s) with username %s...",
+            server_name, server, username
+        )
+
 
         # Connect to the email server
         with MailBox(server).login(username, password) as mailbox:
@@ -107,9 +145,10 @@ def main():
                     moved = move_emails(mailbox, rule, max_emails_per_rule)
                     total_moved += moved
 
-            print(
-                f"\nCompleted processing for {server_name}. Total emails moved: {total_moved}"
-            )
+            logging.info(
+                "Completed processing for %s. Total emails moved: %s", 
+                server_name, total_moved
+                )
 
 
 if __name__ == "__main__":
