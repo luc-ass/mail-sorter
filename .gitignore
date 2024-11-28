@@ -15,7 +15,7 @@ __pycache__/
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints
 
-# macOS system files
+# Synology system files
 .DS_Store
 
 # Windows system files
@@ -28,6 +28,7 @@ dist/
 build/
 
 # Exclude configuration files
-mail_*.yaml
-mail_*.yml
+mail_config.yaml
+mail_sorting_rules.yaml
+*.yml
 test.py
