@@ -12,7 +12,7 @@
 | `output_folder`    | `Office/Important/Old`           |         | no       |
 | `sender_contains`  | `@example.com`                   |         | yes      |
 | `subject_contains` | `Meeting Notes`                  |         | yes      |
-| `min_mail_age`     | `14d`, `4w`                      | `31d`   | yes      |
+| `min_mail_age`     | `14d`, `4w`, `2m`                | `31d`   | yes      |
 | `read_status`      | `unseen`                         | `seen`  | yes      |
 
 ## Configuration files

@@ -18,6 +18,8 @@ def parse_duration(duration_str):
         return datetime.timedelta(days=int(duration_str[:-1]))
     if duration_str.endswith("w"):
         return datetime.timedelta(days=int(duration_str[:-1] * 7))
+    if duration_str.endswith("m"):
+        return datetime.timedelta(days=int(duration_str[:-1] * 30))
     return datetime.timedelta(days=31)  # default 31 days
 
 
