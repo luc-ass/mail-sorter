@@ -16,6 +16,8 @@ def parse_duration(duration_str):
     """Converts duration string (e.g., '14d') into a timedelta object."""
     if duration_str.endswith("d"):
         return datetime.timedelta(days=int(duration_str[:-1]))
+    if duration_str.endswith("w"):
+        return datetime.timedelta(days=int(duration_str[:-1] * 7))
     return datetime.timedelta(days=31)  # default 31 days
 
 
@@ -63,7 +65,7 @@ def move_emails(mailbox, rule, max_emails_per_rule):
         # Oldest to newest
         emails_sorted = sorted(emails, key=lambda msg: msg.date)[:max_emails_per_rule]
     except:
-        print(f"Could not sort E-Mails. Mails will be processed as is.")
+        print("Could not sort E-Mails. Mails will be processed as is.")
         emails_sorted = emails  # Oldest to newest
     print(
         f"Found {len(emails_sorted)} matching emails in '{input_folder}', limited to {max_emails_per_rule}"
