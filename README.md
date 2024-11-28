@@ -12,7 +12,7 @@
 | `output_folder`    | `Office/Important/Old`           |         | no       |
 | `sender_contains`  | `@example.com`                   |         | yes      |
 | `subject_contains` | `Meeting Notes`                  |         | yes      |
-| `min_mail_age`     | `14d`                            | `31d`   | yes      |
+| `min_mail_age`     | `14d`, `4w`                      | `31d`   | yes      |
 | `read_status`      | `unseen`                         | `seen`  | yes      |
 
 ## Configuration files
@@ -47,7 +47,7 @@ rules:
     output_folder: "Belege/Paypal"
     sender_contains: "@paypal.com"
     subject_contains: "Zahlung"
-    min_mail_age: "14d"
+    min_mail_age: "2w"
     read_status: "seen"
   
   - servers:
@@ -75,5 +75,6 @@ python3 main.py
 ### Todo
 - [ ] Add logging to file to better monitor mail movements
 - [ ] Dockerize the script for easier deployment
-- [ ] Add dry-run feature for rule building
+- [ ] Add dry-run feature 
+- [ ] Add rule building option
 - [ ] Fix problems with umlauts (i.e. ä, ü, ö, ß, etc.)
