@@ -1,2 +1,2 @@
-PyYAML
-imap-tools
+imap-tools==1.7.4
+PyYAML==6.0.2
