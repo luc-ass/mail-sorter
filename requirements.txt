@@ -1,2 +1,2 @@
-imap-tools==1.7.4
+imap-tools==1.8.0
 PyYAML==6.0.2
